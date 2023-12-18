@@ -1,6 +1,6 @@
-package org.japrova.sistemaventa.venta;
+package org.japrova.sistemaventa.model.venta;
 
-import org.japrova.sistemaventa.productos.ItemProducto;
+import org.japrova.sistemaventa.model.productos.ItemProducto;
 
 import java.util.ArrayList;
 

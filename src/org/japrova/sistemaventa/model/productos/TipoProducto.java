@@ -1,4 +1,4 @@
-package org.japrova.sistemaventa.productos;
+package org.japrova.sistemaventa.model.productos;
 
 public enum TipoProducto {
 

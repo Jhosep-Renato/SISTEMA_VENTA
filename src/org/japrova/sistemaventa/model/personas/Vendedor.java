@@ -1,8 +1,8 @@
-package org.japrova.sistemaventa.personas;
+package org.japrova.sistemaventa.model.personas;
 
-import org.japrova.sistemaventa.productos.ItemProducto;
-import org.japrova.sistemaventa.productos.Producto;
-import org.japrova.sistemaventa.venta.CarroCompra;
+import org.japrova.sistemaventa.model.productos.ItemProducto;
+import org.japrova.sistemaventa.model.productos.Producto;
+import org.japrova.sistemaventa.model.venta.CarroCompra;
 
 import java.util.ArrayList;
 

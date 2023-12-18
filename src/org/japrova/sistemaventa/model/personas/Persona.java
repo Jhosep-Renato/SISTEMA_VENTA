@@ -1,4 +1,4 @@
-package org.japrova.sistemaventa.personas;
+package org.japrova.sistemaventa.model.personas;
 
 public class Persona {
 
