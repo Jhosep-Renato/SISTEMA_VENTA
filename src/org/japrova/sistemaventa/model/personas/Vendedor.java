@@ -44,6 +44,7 @@ public class Vendedor extends Empleado {
 
     }
 
+
     public String visualizarCarro() {
         StringBuilder sb = new StringBuilder("Productos: \n");
 
@@ -52,7 +53,8 @@ public class Vendedor extends Empleado {
                     .append(("Precio: ")).append(i.getProducto().getPrecio()).append("\n");
         }
         carro.calcularTotal();
-        sb.append(Math.round(carro.getTotal() * 100.0) / 100.0);
+                sb.append("\n").append("Total: ")
+                        .append(Math.round(carro.getTotal() * 100.0) / 100.0);
 
         return sb.toString();
     }
