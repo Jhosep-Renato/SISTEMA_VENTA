@@ -55,6 +55,8 @@ public class MainEjemplo {
                 }
                 case 3 -> System.out.println(vendedor.visualizarCarro());
 
+                case 4 -> System.out.println("Gracias por usar el sistema");
+
                 default -> System.out.println("Por favor ingrese las opciones correspondientes");
             }
         }
