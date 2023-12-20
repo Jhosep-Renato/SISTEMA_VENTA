@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class CarroCompra {
 
-    private ArrayList<ItemProducto> itemProductos;
+    private final ArrayList<ItemProducto> itemProductos;
     private double total = 0;
 
     public CarroCompra() {

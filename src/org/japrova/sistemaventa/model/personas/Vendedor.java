@@ -5,7 +5,7 @@ import org.japrova.sistemaventa.model.venta.CarroCompra;
 
 public class Vendedor extends Empleado {
 
-    private CarroCompra carro;
+    private final CarroCompra carro;
 
     public Vendedor(String dni, String nombre, String apellido) {
         super(dni, nombre, apellido);
@@ -17,12 +17,11 @@ public class Vendedor extends Empleado {
         return carro;
     }
 
-    public Vendedor addProductosCarro(ItemProducto item) { // PARA MÉTODOS ENCADENADOS
+    public void addProductosCarro(ItemProducto item) { // PARA MÉTODOS ENCADENADOS
 
         if(item != null) {
             carro.addItemProducto(item);
         }
-        return this;
     }
 
     public void eliminarProducto(ItemProducto itemProducto) {
@@ -39,10 +38,6 @@ public class Vendedor extends Empleado {
         }
     }
 
-    public void realizarVenta() {
-
-    }
-
 
     public String visualizarCarro() {
         StringBuilder sb = new StringBuilder("\n");
@@ -55,7 +50,7 @@ public class Vendedor extends Empleado {
                 sb.append(++numeroItems).append(". ")
                     .append(i.getProducto().getNombreProducto()).append(" - ")
                         .append("C: ").append(i.getCantidad()).append(" :: S/. ")
-                        .append(i.calcularImporte()).append("\n");
+                        .append(Math.round(i.calcularImporte() * 100.0) / 100.0).append("\n");
             }
             carro.calcularTotal();
             sb.append("\n").append("Total: ")
