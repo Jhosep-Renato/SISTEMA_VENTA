@@ -1,14 +1,10 @@
 package org.japrova.sistemaventa.model.personas;
 
 import org.japrova.sistemaventa.model.productos.ItemProducto;
-import org.japrova.sistemaventa.model.productos.Producto;
 import org.japrova.sistemaventa.model.venta.CarroCompra;
-
-import java.util.ArrayList;
 
 public class Vendedor extends Empleado {
 
-    private ArrayList<ItemProducto> items;
     private CarroCompra carro;
 
     public Vendedor(String dni, String nombre, String apellido) {
@@ -16,27 +12,30 @@ public class Vendedor extends Empleado {
         this.carro = new CarroCompra();
     }
 
-    public void setItems(ArrayList<ItemProducto> items) {
-        this.items = items;
+
+    public CarroCompra getCarro() {
+        return carro;
     }
 
     public Vendedor addProductosCarro(ItemProducto item) { // PARA MÉTODOS ENCADENADOS
 
         if(item != null) {
-            this.setItems(carro.getItemProductos());
             carro.addItemProducto(item);
         }
         return this;
     }
 
-    public void eliminarProducto(Producto producto) {
+    public void eliminarProducto(ItemProducto itemProducto) {
 
-        if(producto != null) {
-            items.forEach(i -> {
-                if(i.getProducto() == producto) {
-                    items.remove(i);
+        if(itemProducto != null) {
+
+            for(ItemProducto item: this.carro.getItemProductos()) {
+
+                if(item == itemProducto) {
+                    carro.getItemProductos().remove(itemProducto);
+                    break;
                 }
-            });
+            }
         }
     }
 
@@ -48,13 +47,18 @@ public class Vendedor extends Empleado {
     public String visualizarCarro() {
         StringBuilder sb = new StringBuilder("Productos: \n");
 
-        for (ItemProducto i : items) {
+        for (ItemProducto i : carro.getItemProductos()) {
+
             sb.append("Nombre: ").append(i.getProducto().getNombreProducto()).append("\n")
                     .append(("Precio: ")).append(i.getProducto().getPrecio()).append("\n");
         }
-        carro.calcularTotal();
-                sb.append("\n").append("Total: ")
-                        .append(Math.round(carro.getTotal() * 100.0) / 100.0);
+
+        if(!carro.getItemProductos().isEmpty()) {
+
+            carro.calcularTotal();
+            sb.append("\n").append("Total: ")
+                    .append(Math.round(carro.getTotal() * 100.0) / 100.0);
+        }
 
         return sb.toString();
     }

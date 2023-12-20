@@ -15,6 +15,7 @@ public class CarroCompra {
 
     public void calcularTotal() {
 
+        this.total = 0;
         for (ItemProducto i: itemProductos) {
             this.setTotal(i.calcularImporte());
         }
@@ -34,7 +35,6 @@ public class CarroCompra {
 
     public void addItemProducto(ItemProducto itemProducto) {
         if(itemProducto != null) {
-
             this.itemProductos.add(itemProducto);
         }
     }

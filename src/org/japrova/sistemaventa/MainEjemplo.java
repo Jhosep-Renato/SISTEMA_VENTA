@@ -1,11 +1,9 @@
 package org.japrova.sistemaventa;
 
-import org.japrova.sistemaventa.model.personas.Administrador;
-import org.japrova.sistemaventa.model.personas.Empleado;
-import org.japrova.sistemaventa.model.personas.Vendedor;
-import org.japrova.sistemaventa.model.productos.ItemProducto;
-import org.japrova.sistemaventa.model.productos.Producto;
-import org.japrova.sistemaventa.model.productos.TipoProducto;
+import org.japrova.sistemaventa.model.personas.*;
+import org.japrova.sistemaventa.model.productos.*;
+
+import java.util.ArrayList;
 import java.util.Scanner;
 
 
@@ -25,7 +23,6 @@ public class MainEjemplo {
         admin.setContrasenia("kei123");
 
 
-
         int opciones = 0;
 
         while(opciones != 4) {
@@ -41,13 +38,24 @@ public class MainEjemplo {
                 case 1 -> {
                     Producto p = eleccionProducto(productos);
                     ItemProducto itemProducto = new ItemProducto(p);
-                    System.out.println("Selecciona la cantidad del producto: " + p.getNombreProducto());
+                    System.out.println("Cantidad de " + p.getNombreProducto() + ":");
+
                     itemProducto.setCantidad(sc.nextInt());
                     vendedor.addProductosCarro(itemProducto);
                 }
-                case 2 -> System.out.println("Elegiste eliminar producto");
+                case 2 -> {
+                    ArrayList<ItemProducto> itemProductos = vendedor.getCarro().getItemProductos();
+                    int i = 0;
+
+                    for(ItemProducto itemProducto: itemProductos) {
+                        System.out.println((i++) + ": " + itemProducto.getProducto().getNombreProducto());
+
+                    }
+                    vendedor.eliminarProducto(itemProductos.get(sc.nextInt()));
+                }
                 case 3 -> System.out.println(vendedor.visualizarCarro());
-                case 4 -> System.out.println("Sales");
+
+                default -> System.out.println("Por favor ingrese las opciones correspondientes");
             }
         }
 
@@ -62,9 +70,8 @@ public class MainEjemplo {
             System.out.println("Nmr: " + i + ". "  + productos[i].getNombreProducto());
         }
         System.out.println("Escriba su numero: " );
-        int numero = sc.nextInt();
 
-        return productos[numero];
+        return productos[sc.nextInt()];
     }
 
     private static Producto[] inicializarProducto() {
